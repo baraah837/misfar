@@ -1,0 +1,169 @@
+/* =====================================================================
+   Misfar – global responsive + RTL layer
+   Loaded AFTER every page stylesheet, so it only overrides what breaks on
+   phones/tablets and what must flip in Arabic (RTL). No API/JS impact.
+   Breakpoints: ≤1099 tablet-landscape · ≤899 tablet · ≤767 phone · ≤420 small phone
+   ===================================================================== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+body { overflow-x: hidden; -webkit-tap-highlight-color: rgba(230,106,29,.18); }
+img, video, iframe { max-width: 100%; }
+button, input, select, textarea { font-family: inherit; }
+:focus-visible { outline: 3px solid #f59e0b; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+/* ---------- Arabic typography ---------- */
+body.lang-ar, body.lang-ar button, body.lang-ar input, body.lang-ar select, body.lang-ar textarea,
+body.lang-ar .home-page, body.lang-ar .destinations-page, body.lang-ar .login-page {
+  font-family: "Tajawal", "Segoe UI", Tahoma, "Noto Sans Arabic", Arial, sans-serif !important;
+}
+body.lang-ar .hero-title, body.lang-ar .hero-subtitle { white-space: normal; line-height: 1.35; }
+
+/* ---------- RTL flips for the legacy pages ---------- */
+html[dir="rtl"] .hero-section { text-align: right; }
+html[dir="rtl"] .destination-card, html[dir="rtl"] .guarantee-left, html[dir="rtl"] .overview-content,
+html[dir="rtl"] .reviews-content { text-align: right; }
+html[dir="rtl"] .dest-search-box { border-radius: 0 999px 999px 0; }
+html[dir="rtl"] .dest-search-button, html[dir="rtl"] .search-btn { border-radius: 999px 0 0 999px; }
+html[dir="rtl"] .back-icon-btn svg, html[dir="rtl"] .trip-back-btn svg { transform: scaleX(-1); }
+html[dir="rtl"] .back-icon-btn { left: auto; right: 16px; }
+html[dir="rtl"] .trip-back-btn { left: auto; right: 24px; }
+html[dir="rtl"] .footer-column:not(:last-child)::after { right: auto; left: 0; }
+html[dir="rtl"] .footer-bottom { flex-direction: row-reverse; }
+html[dir="rtl"] .activity-card, html[dir="rtl"] .trip-card, html[dir="rtl"] .profile-card { text-align: right; }
+html[dir="rtl"] input[type="email"], html[dir="rtl"] input[type="password"], html[dir="rtl"] input[type="url"] { direction: ltr; text-align: right; }
+html[dir="rtl"] .ai-hero, html[dir="rtl"] .ai-builder-card { text-align: right; }
+
+/* ---------- Safe areas (notches) ---------- */
+.site-footer { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* ---------- Tablet landscape ---------- */
+@media (max-width: 1099px) {
+  .popular-section, .guarantee-section { padding-inline: 28px; }
+  .dest-search-section, .dest-grid-section, .dest-detail-section { padding-inline: 28px; }
+  .hero-section { padding-inline: 28px; }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 899px) {
+  .dest-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .guarantee-content { grid-template-columns: 1fr; }
+  .middle-line { display: none; }
+  .hero-title { white-space: normal; font-size: clamp(32px, 7vw, 48px); }
+  .hero-subtitle { white-space: normal; font-size: clamp(16px, 3.4vw, 22px); }
+  .home-top { min-height: 0; }
+  .home-page { background-attachment: scroll; }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px; }              /* stop iOS zoom-on-focus */
+  button, .btn-primary, .btn-secondary { min-height: 44px; } /* comfortable tap targets */
+
+  /* Home */
+  .hero-section { margin-top: 26px; padding: 0 16px 24px; max-width: none; }
+  .hero-title { font-size: clamp(28px, 8.6vw, 38px); }
+  .hero-subtitle { font-size: 16px; }
+  .hero-buttons { flex-direction: column; gap: 10px; }
+  .btn-primary, .btn-secondary { min-width: 0; width: 100%; height: 48px; }
+  .home-bottom-overlay { padding: 18px 0 24px; }
+  .popular-section { padding: 0 12px 22px; }
+  .guarantee-section { padding: 0 12px; }
+  .section-title { font-size: 21px; }
+  .search-bar { flex-wrap: nowrap; padding: 6px 8px; }
+  .search-btn { padding: 10px 16px; }
+  .dest-cards-row { gap: 14px; }
+  .dest-card { width: 100%; max-width: 340px; }
+  .guarantee-panel { padding: 16px 14px; }
+
+  /* Destinations */
+  .dest-search-section { padding: 12px 12px 6px; }
+  .dest-grid-section { padding: 8px 12px 28px; }
+  .dest-grid { grid-template-columns: 1fr; gap: 16px; }
+  .dest-card-image-wrapper { height: 200px; }
+  .dest-search-button { padding: 0 16px; }
+
+  /* Destination details */
+  .dest-detail-section { padding: 6px 12px 24px; }
+  .dest-detail-card { grid-template-columns: 1fr; }
+  .dest-detail-left { padding: 12px 12px 0; }
+  .dest-detail-main-img { height: 210px; }
+  .dest-detail-right { padding: 16px; }
+  .dest-detail-title { font-size: 24px; }
+  .dest-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+  .dest-tab-btn { flex: 1 1 auto; min-height: 44px; padding-inline: 12px; }
+  .dest-tab-content { padding: 14px 14px 20px; }
+  .location-map-image { width: 100%; height: auto; }
+  .back-icon-btn { top: 10px; }
+
+  /* Trip builder */
+  .trip-layout { padding-inline: 12px; }
+  .trip-main-card, .trip-card { padding: 16px; }
+  .trip-main-image { height: 190px; }
+  .trip-row { grid-template-columns: 1fr; gap: 10px; }
+  .trip-back-btn { top: 64px; }
+
+  /* Activities */
+  .activities-main { padding-inline: 12px; }
+  .activity-card { padding: 16px; }
+
+  /* Login / Register */
+  .login-page, .overlay { min-height: 100dvh; }
+  .overlay { padding: 56px 12px 20px; align-items: flex-start; }
+  .main-card { width: 100%; max-width: 440px; padding: 20px 16px; gap: 14px; border-radius: 22px; }
+  .logo-img { width: 120px; height: 120px; }
+  .form-card { padding: 16px 14px; }
+
+  /* Profile / edit profile / AI trip */
+  .profile-page, .edit-profile-page-full { background-attachment: scroll; }
+  .ai-trip-page { background-attachment: scroll; }
+  .ai-overlay { padding-inline: 12px; }
+  .ai-hero-title { font-size: clamp(24px, 7vw, 32px); }
+  .ai-builder-card, .ai-results-card { padding: 16px 14px; }
+  .ai-row { flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .ai-label { width: auto; margin-top: 0; }
+  .ai-chips-row, .ai-chips-wrap { flex-wrap: wrap !important; overflow: visible !important; gap: 8px; width: 100%; }
+  .ai-dropdown { width: 100%; justify-content: flex-start; }
+  .ai-dropdown select { width: 100%; min-width: 0; }
+  .ai-chip { min-height: 40px; }
+  .ai-generate-btn { width: 100%; min-width: 0; }
+  .ai-results-buttons { flex-direction: column; }
+  .ai-results-buttons button { width: 100%; }
+
+  /* Footer */
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 18px; padding: 16px 14px 8px; }
+  .footer-column::after { display: none; }
+  .footer-column:first-child { grid-column: 1 / -1; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding: 12px 14px; }
+}
+
+/* ---------- Small phones ---------- */
+@media (max-width: 420px) {
+  .footer-inner { grid-template-columns: 1fr; }
+  .mf-tabbar button span { font-size: 9.5px; }
+  .hero-subtitle { font-size: 15px; }
+}
+
+/* ---------- Large desktop: keep content readable ---------- */
+@media (min-width: 1600px) {
+  .popular-inner, .guarantee-panel, .dest-grid, .dest-search-row { max-width: 1280px; }
+}
+
+/* ---------- Admin dashboard (inline styles → need !important) ---------- */
+@media (max-width: 899px) {
+  .adm-sidebar { transform: translateX(-100%); transition: transform .25s; width: 250px !important; z-index: 3000 !important; }
+  .adm-sidebar.open { transform: none; }
+  .adm-main { margin-left: 0 !important; padding: 16px 12px 24px !important; }
+  .adm-topbar { display: flex !important; }
+  .adm-grid-2 { grid-template-columns: 1fr !important; }
+  .adm-main { overflow-x: auto !important; }
+  .adm-search { width: 100% !important; }
+}
+.adm-topbar { display: none; align-items: center; gap: 10px; margin-bottom: 14px; }
+.adm-topbar button { background: #f97316; color: #fff; border: 0; border-radius: 10px; padding: 9px 14px; font-weight: 700; cursor: pointer; }
+.adm-backdrop { display: none; }
+@media (max-width: 899px) { .adm-backdrop.open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 2999; } }
+
+/* flex children with inputs must be allowed to shrink */
+.search-bar input, .dest-search-box input { min-width: 0; width: 100%; }
+.search-bar, .dest-search-row, .dest-search-box { min-width: 0; }
+.home-rail { max-width: 100%; }

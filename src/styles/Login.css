@@ -1,0 +1,241 @@
+/* ===================== */
+
+/*      LOGIN PAGE       */
+
+/* ===================== */
+
+.login-page {
+
+  position: relative;
+
+  min-height: 100vh;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  font-family: "Inter", system-ui, sans-serif;
+
+}
+
+/* الخلفية المتغيرة */
+
+.background-slider {
+
+  position: absolute;
+
+  inset: 0;
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  transition: background-image 0.8s ease-in-out;
+
+
+}
+
+.background-slider::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.25);
+
+}
+
+/* طبقة توسيط الكارد */
+
+.overlay {
+
+  position: relative;
+
+  z-index: 1;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+/* الكارد الرئيسي (اللوجو + الفورم) */
+
+.main-card {
+
+  width: 520px;
+
+  padding: 35px 40px;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  backdrop-filter: blur(15px);
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 24px;
+
+}
+
+/* اللوجو في صفحة اللوج إن */
+
+.logo-block {
+
+  display: flex;
+
+  justify-content: center;
+
+}
+
+.logo-img {
+
+  width: 190px;
+
+  height: 190px;
+
+  border-radius: 20px;
+
+  object-fit: cover;
+
+}
+
+/* كارد بيانات تسجيل الدخول */
+
+.form-card {
+
+  width: 100%;
+
+  padding: 22px 25px;
+
+  border-radius: 25px;
+
+  background: rgba(255, 250, 240, 0.92);
+
+  backdrop-filter: blur(6px);
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+}
+
+/* الحقول */
+
+.field {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+}
+
+.field label {
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #000000;
+
+}
+
+.field input {
+
+  height: 55px;
+
+  border-radius: 25px;
+
+  border: none;
+
+  padding: 0 18px;
+
+  font-size: 15px;
+
+  background: #ffffff;
+
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+
+  outline: none;
+
+  transition: 0.2s;
+
+}
+
+.field input::placeholder {
+
+  color: #bcbcbc;
+
+}
+
+.field input:focus {
+
+  box-shadow:
+
+    0 0 0 3px rgba(230, 106, 29, 0.25),
+
+    0 5px 14px rgba(0, 0, 0, 0.12);
+
+}
+
+/* زر تسجيل الدخول */
+
+.login-btn {
+
+  height: 55px;
+
+  border-radius: 25px;
+
+  border: none;
+
+  background: linear-gradient(180deg, #f08a3c, #e66a1d);
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(230, 106, 29, 0.45);
+
+  transition: 0.2s;
+
+}
+
+.login-btn:hover {
+
+  transform: translateY(-2px);
+
+}
+
+.login-btn:active {
+
+  transform: translateY(0);
+
+}
+
+
+ 

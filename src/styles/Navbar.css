@@ -1,0 +1,121 @@
+/* ===== NAVBAR ===== */
+.site-header{
+ position: sticky;
+ top: 0;
+ z-index: 1000;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 14px 60px;
+ background: rgba(255,255,255,0.75);
+ backdrop-filter: blur(8px);
+}
+/* ===== LOGO ===== */
+.nav-logo{
+ font-size: 26px;
+ font-weight: 700;
+ color: #1e1e1e;
+}
+.nav-logo span{
+ color: #ff7b26;
+}
+/* ===== LINKS ===== */
+.nav-links{
+ display: flex;
+ align-items: center;
+ gap: 120px;
+}
+.nav-links a{
+ text-decoration: none;
+ font-size: 18px;
+ font-weight: 500;
+ color: #2b2b2b;
+ position: relative;
+ transition: 0.2s;
+}
+/* Hover */
+.nav-links a:hover{
+ color: #ff7b26;
+}
+
+.nav-links a.active::after{
+ content: "";
+ position: absolute;
+ left: 0;
+ bottom: -6px;
+ width: 100%;
+ height: 3px;
+ background: #ff7b26;
+ border-radius: 10px;
+}
+/* ===== PROFILE ICON ===== */
+.nav-profile-btn{
+ background: transparent;
+ border: none;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+}
+.nav-profile-btn svg{
+ font-size: 28px;
+ color: #333;
+ transition: 0.2s;
+}
+.nav-profile-btn svg:hover{
+ color: #ff7b26;
+}
+
+.active-profile{
+box-shadow:0 0 0 3px #ff7a1a, 0 0 12px rgba(255,122,26,0.8);
+border-radius:50%;
+}
+
+/* الحالة العادية */
+
+.active-profile{
+
+border-radius:50%;
+
+box-shadow:0 0 0 3px #ff7a1a;
+
+animation:profilePulse 2s infinite;
+
+}
+
+/* حركة النبض */
+
+@keyframes profilePulse{
+
+0%{
+
+box-shadow:0 0 0 3px #ff7a1a,
+
+0 0 0 0 rgba(255,122,26,0.6);
+
+}
+
+50%{
+
+box-shadow:0 0 0 3px #ff7a1a,
+
+0 0 12px 6px rgba(255,122,26,0.4);
+
+}
+
+100%{
+
+box-shadow:0 0 0 3px #ff7a1a,
+
+0 0 0 0 rgba(255,122,26,0);
+
+}
+
+}
+ 
+
+.nav-user-photo {
+ width: 38px;
+ height: 38px;
+ border-radius: 50%;
+ object-fit: cover;
+}

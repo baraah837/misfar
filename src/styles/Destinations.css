@@ -1,0 +1,403 @@
+/* ========================= */
+/*     DESTINATIONS PAGE     */
+/* ========================= */
+.destinations-page {
+ position: relative;
+ min-height: 100vh;
+ width: 100%;
+ font-family: "Poppins", "Inter", system-ui, sans-serif;
+ overflow-x: hidden;
+}
+/* خلفية كبيرة مع تمويه بسيط */
+.dest-bg {
+ position: absolute;
+ inset: 0;
+ background-size: cover;
+ background-position: center;
+ transform: scale(1.03);
+ position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+z-index: -1;
+ 
+}
+.dest-bg::after {
+ content: "";
+ position: absolute;
+ inset: 0;
+ background: linear-gradient(
+   to bottom,
+   rgba(15, 23, 42, 0.35),
+   rgba(15, 23, 42, 0.75)
+ );
+}
+.dest-main-overlay {
+ position: relative;
+ z-index: 1;
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+}
+/* ========================= */
+/*       SEARCH BAR          */
+/* ========================= */
+.dest-search-section {
+ padding: 18px 60px 10px;
+}
+.dest-search-row {
+ max-width: 1150px;
+ margin: 0 auto;
+ display: flex;
+ align-items: stretch;
+ gap: 0;
+}
+/* البوكس الأبيض الطويل */
+.dest-search-box {
+ flex: 1;
+ background: #fdfdfd;
+ border-radius: 999px 0 0 999px;
+ padding: 10px 18px;
+ display: flex;
+ align-items: center;
+ box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+.dest-search-icon {
+ font-size: 20px;
+ color: #6b7280;
+ margin-right: 10px;
+}
+.dest-search-box input {
+ flex: 1;
+ border: none;
+ outline: none;
+ background: transparent;
+ font-size: 15px;
+}
+/* زر Search البرتقالي المقوّس */
+.dest-search-button {
+ border: none;
+ padding: 0 34px;
+ background: #f97316;
+ color: #ffffff;
+ font-size: 15px;
+ font-weight: 600;
+ border-radius: 0 999px 999px 0;
+ box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+ cursor: pointer;
+}
+/* ========================= */
+/*       GRID CARDS          */
+/* ========================= */
+.dest-grid-section {
+ padding: 10px 60px 40px;
+}
+.dest-grid {
+ max-width: 1150px;
+ margin: 0 auto;
+ display: grid;
+ grid-template-columns: repeat(3, minmax(0, 1fr));
+ gap: 24px;
+}
+.destination-card {
+ border: none;
+ background: transparent;
+ padding: 0;
+ cursor: pointer;
+ text-align: left;
+ border-radius: 26px;
+ display: block;
+ transition:
+   transform 0.18s ease,
+   box-shadow 0.18s ease,
+   filter 0.18s ease;
+}
+.destination-card:hover {
+ transform: translateY(-6px);
+ box-shadow: 0 22px 45px rgba(0, 0, 0, 0.55);
+ filter: brightness(1.03);
+}
+.dest-card-image-wrapper {
+ border-radius: 26px 26px 0 0;
+ overflow: hidden;
+ height: 190px;
+ box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+.dest-card-image-wrapper img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+}
+.dest-card-info {
+ margin-top: 0;
+ background: rgba(248, 250, 252, 0.92);
+ border-radius: 0 0 26px 26px;
+ padding: 10px 14px 14px;
+ box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+.dest-card-name {
+ display: block;
+ font-size: 15px;
+ font-weight: 600;
+ margin-bottom: 4px;
+ color: #111827;
+}
+.dest-card-rating {
+ font-size: 14px;
+ color: #fbbf24;
+ margin-bottom: 8px;
+}
+.view-details-btn {
+ width: 100%;
+ height: 36px;
+ border-radius: 18px;
+ border: none;
+ background: #f97316;
+ color: #ffffff;
+ font-size: 14px;
+ font-weight: 600;
+ cursor: pointer;
+}
+/* ========================= */
+/*     DETAIL SECTION        */
+/* ========================= */
+.dest-detail-section {
+ padding: 10px 60px 50px;
+}
+.dest-detail-card {
+ max-width: 1150px;
+ margin: 0 auto;
+ background: rgba(248, 250, 252, 0.96);
+ border-radius: 26px;
+ box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+ display: grid;
+ grid-template-columns: 1.2fr 1fr;
+ gap: 0;
+ overflow: hidden;
+}
+/* اليسار – الصورة الكبيرة */
+.dest-detail-left {
+ padding: 18px 18px 18px 18px;
+}
+.dest-detail-main-img {
+ width: 100%;
+ height: 260px;
+ border-radius: 22px;
+ object-fit: cover;
+}
+/* اليمين – النص وزر start trip */
+.dest-detail-right {
+ padding: 24px 26px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+.dest-detail-title {
+ font-size: 28px;
+ font-weight: 700;
+ margin: 0 0 4px;
+}
+.dest-detail-area {
+ font-size: 14px;
+ color: #6b7280;
+ margin-bottom: 10px;
+}
+.dest-detail-stars {
+ font-size: 16px;
+ color: #fbbf24;
+ margin-bottom: 18px;
+}
+.start-trip-btn {
+ width: 160px;
+ height: 42px;
+ border-radius: 21px;
+ border: none;
+ background: #f97316;
+ color: #ffffff;
+ font-size: 15px;
+ font-weight: 600;
+ cursor: pointer;
+}
+/* التابات */
+.dest-tabs {
+ max-width: 1150px;
+ margin: 14px auto 0;
+ display: flex;
+ gap: 0;
+}
+.dest-tab-btn {
+ flex: 0 0 140px;
+ height: 40px;
+ border: none;
+ font-size: 14px;
+ font-weight: 600;
+ cursor: pointer;
+ border-radius: 18px 18px 0 0;
+ background: #e5e7eb;
+ color: #111827;
+}
+.dest-tab-btn.active {
+ background: #f97316;
+ color: #ffffff;
+}
+/* محتوى التاب */
+.dest-tab-content {
+ max-width: 1150px;
+ margin: 0 auto;
+ background: rgba(248, 250, 252, 0.96);
+ border-radius: 0 0 22px 22px;
+ padding: 18px 22px 24px;
+ box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+.overview-content h3 {
+ margin-top: 0;
+ margin-bottom: 10px;
+ font-size: 18px;
+}
+.overview-content p {
+ font-size: 14px;
+ line-height: 1.6;
+ color: #374151;
+}
+/* Reviews */
+.reviews-content h3 {
+ margin-top: 0;
+ margin-bottom: 12px;
+ font-size: 18px;
+}
+.reviews-note {
+ font-size: 13px;
+ color: #6b7280;
+ margin-bottom: 14px;
+}
+.review-box {
+ padding: 10px 0;
+ border-top: 1px solid #e5e7eb;
+}
+.review-box h4 {
+ margin: 0 0 4px;
+ font-size: 14px;
+}
+.review-box p {
+ margin: 0;
+ font-size: 13px;
+ color: #4b5563;
+}
+/* تأثيرات hover للكروت و الأزرار */
+.destination-card,
+.view-details-btn,
+.dest-search-button,
+.start-trip-btn,
+.dest-tab-btn {
+ transition:
+   transform 0.15s ease,
+   box-shadow 0.15s ease,
+   background-color 0.2s ease,
+   color 0.2s ease;
+}
+.view-details-btn:hover,
+.dest-search-button:hover,
+.start-trip-btn:hover {
+ transform: translateY(-1px);
+ box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+.view-details-btn:active,
+.dest-search-button:active,
+.start-trip-btn:active {
+ transform: translateY(1px) scale(0.98);
+ box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+/* RESPONSIVE */
+@media (max-width: 960px) {
+ .dest-search-section,
+ .dest-grid-section,
+ .dest-detail-section {
+   padding: 16px 20px 30px;
+ }
+ .dest-search-row {
+   flex-direction: column;
+ }
+ .dest-search-box {
+   border-radius: 999px;
+ }
+ .dest-search-button {
+   margin-top: 10px;
+   border-radius: 999px;
+   width: 100%;
+   padding: 10px 0;
+ }
+ .dest-grid {
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+ }
+ .dest-detail-card {
+   grid-template-columns: 1fr;
+ }
+ .dest-detail-main-img {
+   height: 220px;
+ }
+ .dest-tabs {
+   max-width: 100%;
+ }
+ .dest-tab-content {
+   max-width: 100%;
+ }
+}
+
+/* زر الرجوع الاحترافي */
+.back-icon-btn {
+ position: absolute;
+ top: 110px;
+ left: 60px;
+ width: 42px;
+ height: 42px;
+ border-radius: 50%;
+ border: none;
+ background: rgba(255, 255, 255, 0.15);
+ backdrop-filter: blur(8px);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ cursor: pointer;
+ color: white;
+ font-size: 16px;
+ box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+ transition: all 0.2s ease;
+}
+.back-icon-btn:hover {
+ background: rgba(249, 115, 22, 0.9);
+ transform: scale(1.08);
+ box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.location-content {
+ width: 100%;
+}
+.location-map-link {
+ display: block;
+ width: 100%;
+}
+.location-map-image {
+ width: 100%;
+ max-height: 420px;
+ object-fit: cover;
+ border-radius: 12px;
+ display: block;
+ cursor: pointer;
+}
+
+.location-content {
+ width: 100%;
+}
+.location-map-link {
+ display: block;
+ width: 100%;
+}
+.location-map-image {
+ width: 100%;
+ max-height: 420px;
+ object-fit: cover;
+ border-radius: 12px;
+ display: block;
+ cursor: pointer;
+}

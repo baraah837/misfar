@@ -1,0 +1,413 @@
+/*edit-profile-page*/
+.edit-profile-page-full {
+
+ min-height: 100vh;
+ position: relative;
+ overflow-x: hidden;
+ background-size: cover;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+}
+
+.edit-profile-overlay {
+
+  min-height: 100vh;
+
+  padding: 22px 0 40px;
+
+}
+
+
+.edit-profile-container {
+
+  max-width: 1240px;
+
+  margin: 0 auto;
+
+  padding: 18px 22px 34px;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  border: 1px solid rgba(255, 255, 255, 0.42);
+
+  backdrop-filter: blur(10px);
+
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+
+}
+
+.edit-top-avatar {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  margin: 10px 0 26px;
+
+}
+
+.edit-avatar-circle-big {
+
+  width: 170px;
+
+  height: 170px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+
+}
+
+.edit-avatar-image-big {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+.edit-avatar-icon-big {
+
+  font-size: 6rem;
+
+  color: white;
+
+}
+
+.change-photo-hidden-btn {
+
+  margin-top: 14px;
+
+  background: #ec741d;
+
+  color: #111;
+
+  padding: 10px 18px;
+
+  border-radius: 14px;
+
+  font-weight: 700;
+
+  display: inline-flex;
+
+  gap: 8px;
+
+  align-items: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+
+}
+
+/* الصفوف العادية */
+
+.edit-row-full {
+
+  max-width: 980px;
+
+  margin: 0 auto 16px;
+
+  display: grid;
+
+  grid-template-columns: 250px 1fr;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+
+}
+
+.edit-label-side {
+
+  background: #ec741d;
+
+  color: #111;
+
+  font-weight: 800;
+
+  font-size: 1.05rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 64px;
+
+}
+
+.edit-value-side {
+
+  background: rgba(255, 255, 255, 0.92);
+
+  min-height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+}
+
+.edit-value-side input,
+
+.edit-value-side select {
+
+  width: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font-size: 1rem;
+
+  font-weight: 600;
+
+  color: #222;
+
+}
+
+.edit-small-icon {
+
+  margin-left: 12px;
+
+  flex-shrink: 0;
+
+  pointer-events: none;
+
+}
+
+/* Preferences مثل النموذج */
+
+.preferences-wrap {
+
+  max-width: 980px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 250px 1fr;
+
+  align-items: stretch;
+
+  gap: 0;
+
+}
+
+.preferences-label {
+
+  background: #ec741d;
+
+  color: #111;
+
+  font-weight: 800;
+
+  font-size: 1.05rem;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  padding-top: 22px;
+
+  min-height: 180px;
+
+  border-radius: 16px 0 0 16px;
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+
+}
+
+.preferences-box {
+
+  background: rgba(255, 255, 255, 0.92);
+
+  padding: 18px 22px;
+
+  border-radius: 0 16px 16px 0;
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+
+}
+
+.preference-line {
+
+  display: grid;
+
+  grid-template-columns: 100px 1fr;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 16px;
+
+}
+
+.preference-line:last-child {
+
+  margin-bottom: 0;
+
+}
+
+.preference-line span {
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  color: #111;
+
+}
+
+.preference-line select {
+
+  height: 48px;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 14px;
+
+  background: #ececec;
+
+  padding: 0 16px;
+
+  font-size: 1rem;
+
+  color: #444;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+
+}
+
+.update-main-btn {
+
+  display: block;
+
+  margin: 28px auto 0;
+
+  border: none;
+
+  background: #ec741d;
+
+  color: #111;
+
+  border-radius: 16px;
+
+  padding: 14px 44px;
+
+  font-size: 1.05rem;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+
+}
+
+@media (max-width: 900px) {
+
+  .edit-row-full,
+
+  .preferences-wrap {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .preferences-label {
+
+    min-height: 56px;
+
+    border-radius: 16px 16px 0 0;
+
+    justify-content: flex-start;
+
+    padding-left: 18px;
+
+    padding-top: 16px;
+
+    align-items: center;
+
+  }
+
+  .preferences-box {
+
+    border-radius: 0 0 16px 16px;
+
+  }
+
+  .preference-line {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .edit-label-side {
+
+    justify-content: flex-start;
+
+    padding-left: 18px;
+
+  }
+
+}
+
+.edit-value-side {
+ background: rgba(255, 255, 255, 0.92);
+ min-height: 64px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 0 18px;
+}
+.edit-value-side input,
+.edit-value-side select {
+ width: 100%;
+ border: none;
+ outline: none;
+ background: transparent;
+ font-size: 1rem;
+ font-weight: 600;
+ color: #222;
+}
+.edit-small-icon {
+ margin-left: 12px;
+ flex-shrink: 0;
+ pointer-events: none;
+}
+ 

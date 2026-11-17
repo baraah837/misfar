@@ -1,0 +1,766 @@
+/* ============ صفحة AI Trip Generator ============ */
+.ai-trip-page {
+ min-height: 100vh;
+ position: relative;
+ overflow-x: hidden;
+ background-size: cover;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+}
+.ai-overlay {
+ min-height: 100vh;
+ background: linear-gradient(
+     to bottom,
+     rgba(0, 0, 0, 0.35),
+     rgba(0, 0, 0, 0.6)
+   );
+ padding-bottom: 60px;
+}
+.ai-trip-page .home-navbar {
+ margin-bottom: 40px;
+}
+/* ========== HERO العلوي ========== */
+.ai-hero {
+ max-width: 1100px;
+ margin: 0 auto 20px;
+ padding: 30px 20px 0;
+ color: #ffffff;
+}
+.ai-hero-title {
+ font-size: 2.6rem;
+ font-weight: 700;
+ margin-bottom: 8px;
+color: #ffffff;}
+.ai-hero-subtitle {
+ font-size: 50px;
+ color: #ffffff;
+font-weight: 550;
+ 
+ 
+
+}
+/* ========== بطاقة Build your smart itinerary ========== */
+.ai-builder-card {
+ max-width: 1150px;
+ margin: 10px auto 40px;
+ padding: 28px 34px 30px;
+ border-radius: 26px;
+ background: rgba(255, 255, 255, 0.9);
+ box-shadow: 0 22px 40px rgba(0, 0, 0, 0.25);
+ backdrop-filter: blur(12px);
+}
+.ai-section-title {
+ font-size: 1.4rem;
+ font-weight: 700;
+ margin-bottom: 18px;
+}
+/* صفوف العناصر (الليبل + الخيارات) */
+.ai-row {
+ display: flex;
+ align-items: flex-start; /* علشان Destination Region يكون بمستوى البقية */
+ gap: 24px;
+ margin-bottom: 18px;
+}
+/* الليبل في اليسار */
+.ai-label {
+ width: 200px;
+ font-weight: 500;
+ color: #333;
+ margin-top: 10px; /* يوازن ارتفاع الليبل مع العناصر */
+}
+/* القيم في اليمين (dropdown أو chips) */
+.ai-dropdown {
+ flex: 1;
+ display: flex;
+ justify-content: flex-end;
+}
+.ai-dropdown select {
+ min-width: 210px;
+ border-radius: 999px;
+ border: none;
+ padding: 10px 18px;
+ background: #e85b1f;
+ color: #fff;
+ font-weight: 500;
+ font-size: 0.95rem;
+ box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+ cursor: pointer;
+ outline: none;
+ transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.ai-dropdown select:hover {
+ transform: translateY(-1px);
+ box-shadow: 0 14px 26px rgba(0, 0, 0, 0.3);
+ background: #f26d30;
+}
+/* صف الأزرار (chips) */
+.ai-chips-row {
+ flex: 1;
+ display: flex;
+ gap: 10px;
+}
+/* خصيصاً لـ Interests حتى لا تكسر سطر */
+.ai-chips-wrap {
+ flex-wrap: nowrap;
+ overflow-x: auto;
+ max-width: 100%;
+}
+/* شريط السكروول الخفيف */
+.ai-chips-wrap::-webkit-scrollbar {
+ height: 4px;
+}
+.ai-chips-wrap::-webkit-scrollbar-thumb {
+ background: rgba(0, 0, 0, 0.2);
+ border-radius: 10px;
+}
+/* الأزرار نفسها */
+.ai-chip {
+ border-radius: 999px;
+ border: none;
+ padding: 7px 18px;
+ font-size: 0.9rem;
+ cursor: pointer;
+ background: #f3f4f6;
+ color: #333;
+ box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+ transition: transform 0.18s ease, box-shadow 0.18s ease,
+   background 0.18s ease, color 0.18s ease;
+ white-space: nowrap;
+}
+/* الحالة النشطة (البرتقالية) */
+.ai-chip-active {
+ background: #e85b1f;
+ color: #fff;
+}
+/* زر الدائرة الصغيرة + */
+.ai-chip-round {
+ padding-inline: 14px;
+ font-weight: 700;
+}
+/* تأثير hover لجميع الـ chips */
+.ai-chip:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+/* ========== زر Generate Smart Itinerary ========== */
+.ai-generate-wrapper {
+ margin-top: 20px;
+ display: flex;
+ justify-content: center;
+}
+.ai-generate-btn {
+ border-radius: 999px;
+ border: none;
+ padding: 12px 40px;
+ font-size: 1rem;
+ font-weight: 600;
+ cursor: pointer;
+ background: #ffffff;
+ color: #222;
+ box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
+ transition: transform 0.22s ease, box-shadow 0.22s ease,
+   background 0.22s ease, color 0.22s ease;
+ display: inline-flex;
+ align-items: center;
+ gap: 10px;
+}
+/* عند الـ hover */
+.ai-generate-btn:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+}
+/* عند الضغط */
+.ai-generate-btn:active {
+ transform: translateY(-1px) scale(0.99);
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+/* حالة التحميل */
+.ai-generate-btn.loading {
+ background: linear-gradient(90deg, #ffffff, #f4f4f4, #ffffff);
+ background-size: 200% 100%;
+ animation: loadingShimmer 1.4s infinite linear;
+ color: #666;
+}
+/* دائرة التحميل بجانب النص */
+.btn-spinner {
+ width: 18px;
+ height: 18px;
+ border-radius: 50%;
+ border: 2px solid rgba(0, 0, 0, 0.15);
+ border-top-color: #e85b1f;
+ animation: spin 0.7s linear infinite;
+}
+/* أنيميشن التحميل */
+@keyframes spin {
+ to {
+   transform: rotate(360deg);
+ }
+}
+@keyframes loadingShimmer {
+ 0% {
+   background-position: 0% 0;
+ }
+ 100% {
+   background-position: -200% 0;
+ }
+}
+/* ========== Toast / رسالة الإشعار ========== */
+.ai-toast {
+ position: fixed;
+ bottom: 26px;
+ left: 50%;
+ transform: translateX(-50%);
+ background: rgba(22, 22, 22, 0.95);
+ color: #fff;
+ padding: 10px 18px;
+ border-radius: 999px;
+ font-size: 0.9rem;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4);
+ animation: toastIn 0.25s ease-out;
+ z-index: 999;
+}
+.ai-toast span {
+ font-size: 1.1rem;
+}
+@keyframes toastIn {
+ from {
+   opacity: 0;
+   transform: translate(-50%, 10px);
+ }
+ to {
+   opacity: 1;
+   transform: translate(-50%, 0);
+ }
+}
+/* ========== بطاقة النتائج ========== */
+.ai-results-card {
+ max-width: 1150px;
+ margin: 0 auto;
+ padding: 26px 34px 34px;
+ border-radius: 26px;
+ background: rgba(255, 255, 255, 0.96);
+ box-shadow: 0 22px 40px rgba(0, 0, 0, 0.28);
+ backdrop-filter: blur(10px);
+}
+.ai-day-block {
+ margin-bottom: 18px;
+ font-size: 0.98rem;
+ color: #222;
+}
+.ai-day-title {
+ font-weight: 700;
+ margin-bottom: 6px;
+}
+.ai-divider {
+ border: none;
+ border-top: 1px solid rgba(0, 0, 0, 0.15);
+ margin: 12px 0 18px;
+}
+/* أزرار Save / Edit / Generate Suggestions في الأسفل */
+.ai-results-buttons {
+ display: flex;
+ gap: 14px;
+ margin-top: 10px;
+ margin-bottom: 14px;
+}
+.ai-secondary-btn {
+ border-radius: 999px;
+ border: none;
+ padding: 10px 26px;
+ font-size: 0.95rem;
+ font-weight: 500;
+ cursor: pointer;
+ background: #e85b1f;
+ color: #fff;
+ box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+ transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.ai-secondary-btn:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+ background: #f26d30;
+}
+.ai-secondary-btn:active {
+ transform: translateY(-1px) scale(0.99);
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.ai-results-card .ai-generate-wrapper {
+ margin-top: 14px;
+}/* ============ صفحة AI Trip Generator ============ */
+.ai-trip-page {
+ min-height: 100vh;
+ background-size: cover;
+ background-position: center;
+ background-repeat: no-repeat;
+}
+/* طبقة التعتيم فوق الخلفية */
+.ai-overlay {
+ min-height: 100vh;
+ background: linear-gradient(
+     to bottom,
+     rgba(0, 0, 0, 0.35),
+     rgba(0, 0, 0, 0.6)
+   );
+ padding-bottom: 60px;
+}
+/* نترك الـ navbar يأخذ التنسيق من الصفحات الأخرى
+  فقط نضيف مسافة بعده */
+.ai-trip-page .home-navbar {
+ margin-bottom: 40px;
+}
+/* ========== HERO العلوي ========== */
+.ai-hero {
+ max-width: 1100px;
+ margin: 0 auto 20px;
+ padding: 30px 20px 0;
+ color: #ffffff;
+}
+.ai-hero-title {
+ font-size: 2.6rem;
+ font-weight: 700;
+ margin-bottom: 8px;
+}
+.ai-hero-subtitle {
+ font-size: 1.05rem;
+ opacity: 0.9;
+}
+/* ========== بطاقة Build your smart itinerary ========== */
+.ai-builder-card {
+ max-width: 1150px;
+ margin: 10px auto 40px;
+ padding: 28px 34px 30px;
+ border-radius: 26px;
+ background: rgba(255, 255, 255, 0.9);
+ box-shadow: 0 22px 40px rgba(0, 0, 0, 0.25);
+ backdrop-filter: blur(12px);
+}
+.ai-section-title {
+ font-size: 1.4rem;
+ font-weight: 700;
+ margin-bottom: 18px;
+}
+/* صفوف العناصر (الليبل + الخيارات) */
+.ai-row {
+ display: flex;
+ align-items: flex-start; /* علشان Destination Region يكون بمستوى البقية */
+ gap: 24px;
+ margin-bottom: 18px;
+}
+/* الليبل في اليسار */
+.ai-label {
+ width: 200px;
+ font-weight: 500;
+ color: #333;
+ margin-top: 10px; /* يوازن ارتفاع الليبل مع العناصر */
+}
+/* القيم في اليمين (dropdown أو chips) */
+.ai-dropdown {
+ flex: 1;
+ display: flex;
+ justify-content: flex-end;
+}
+.ai-dropdown select {
+ min-width: 210px;
+ border-radius: 999px;
+ border: none;
+ padding: 10px 18px;
+ background: #e85b1f;
+ color: #fff;
+ font-weight: 500;
+ font-size: 0.95rem;
+ box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+ cursor: pointer;
+ outline: none;
+ transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.ai-dropdown select:hover {
+ transform: translateY(-1px);
+ box-shadow: 0 14px 26px rgba(0, 0, 0, 0.3);
+ background: #f26d30;
+}
+/* صف الأزرار (chips) */
+.ai-chips-row {
+ flex: 1;
+ display: flex;
+ gap: 10px;
+}
+.ai-chips-wrap {
+ flex-wrap: nowrap;
+ overflow-x: auto;
+ max-width: 100%;
+}
+/* شريط السكروول الخفيف */
+.ai-chips-wrap::-webkit-scrollbar {
+ height: 4px;
+}
+.ai-chips-wrap::-webkit-scrollbar-thumb {
+ background: rgba(0, 0, 0, 0.2);
+ border-radius: 10px;
+}
+/* الأزرار نفسها */
+.ai-chip {
+ border-radius: 999px;
+ border: none;
+ padding: 7px 18px;
+ font-size: 0.9rem;
+ cursor: pointer;
+ background: #f3f4f6;
+ color: #333;
+ box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+ transition: transform 0.18s ease, box-shadow 0.18s ease,
+   background 0.18s ease, color 0.18s ease;
+ white-space: nowrap;
+}
+/* الحالة النشطة (البرتقالية) */
+.ai-chip-active {
+ background: #e85b1f;
+ color: #fff;
+}
+/* زر الدائرة الصغيرة + */
+.ai-chip-round {
+ padding-inline: 14px;
+ font-weight: 700;
+}
+/* تأثير hover لجميع الـ chips */
+.ai-chip:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+/* ========== زر Generate Smart Itinerary ========== */
+.ai-generate-wrapper {
+ margin-top: 20px;
+ display: flex;
+ justify-content: center;
+}
+.ai-generate-btn {
+ border-radius: 999px;
+ border: none;
+ padding: 12px 40px;
+ font-size: 1rem;
+ font-weight: 600;
+ cursor: pointer;
+ background: #ffffff;
+ color: #222;
+ box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
+ transition: transform 0.22s ease, box-shadow 0.22s ease,
+   background 0.22s ease, color 0.22s ease;
+ display: inline-flex;
+ align-items: center;
+ gap: 10px;
+}
+/* عند الـ hover */
+.ai-generate-btn:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+}
+/* عند الضغط */
+.ai-generate-btn:active {
+ transform: translateY(-1px) scale(0.99);
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+/* حالة التحميل */
+.ai-generate-btn.loading {
+ background: linear-gradient(90deg, #ffffff, #f4f4f4, #ffffff);
+ background-size: 200% 100%;
+ animation: loadingShimmer 1.4s infinite linear;
+ color: #666;
+}
+/* دائرة التحميل بجانب النص */
+.btn-spinner {
+ width: 18px;
+ height: 18px;
+ border-radius: 50%;
+ border: 2px solid rgba(0, 0, 0, 0.15);
+ border-top-color: #e85b1f;
+ animation: spin 0.7s linear infinite;
+}
+/* أنيميشن التحميل */
+@keyframes spin {
+ to {
+   transform: rotate(360deg);
+ }
+}
+@keyframes loadingShimmer {
+ 0% {
+   background-position: 0% 0;
+ }
+ 100% {
+   background-position: -200% 0;
+ }
+}
+/* ========== Toast / رسالة الإشعار ========== */
+.ai-toast {
+ position: fixed;
+ bottom: 26px;
+ left: 50%;
+ transform: translateX(-50%);
+ background: rgba(22, 22, 22, 0.95);
+ color: #fff;
+ padding: 10px 18px;
+ border-radius: 999px;
+ font-size: 0.9rem;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4);
+ animation: toastIn 0.25s ease-out;
+ z-index: 999;
+}
+.ai-toast span {
+ font-size: 1.1rem;
+}
+@keyframes toastIn {
+ from {
+   opacity: 0;
+   transform: translate(-50%, 10px);
+ }
+ to {
+   opacity: 1;
+   transform: translate(-50%, 0);
+ }
+}
+/* ========== بطاقة النتائج ========== */
+.ai-results-card {
+ max-width: 1150px;
+ margin: 0 auto;
+ padding: 26px 34px 34px;
+ border-radius: 26px;
+ background: rgba(255, 255, 255, 0.96);
+ box-shadow: 0 22px 40px rgba(0, 0, 0, 0.28);
+ backdrop-filter: blur(10px);
+}
+.ai-day-block {
+ margin-bottom: 18px;
+ font-size: 0.98rem;
+ color: #222;
+}
+.ai-day-title {
+ font-weight: 700;
+ margin-bottom: 6px;
+}
+.ai-divider {
+ border: none;
+ border-top: 1px solid rgba(0, 0, 0, 0.15);
+ margin: 12px 0 18px;
+}
+/* أزرار Save / Edit / Generate Suggestions في الأسفل */
+.ai-results-buttons {
+ display: flex;
+ gap: 14px;
+ margin-top: 10px;
+ margin-bottom: 14px;
+}
+.ai-secondary-btn {
+ border-radius: 999px;
+ border: none;
+ padding: 10px 26px;
+ font-size: 0.95rem;
+ font-weight: 500;
+ cursor: pointer;
+ background: #e85b1f;
+ color: #fff;
+ box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+ transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  
+
+}
+.ai-secondary-btn:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+ background: #f26d30;
+}
+.ai-secondary-btn:active {
+ transform: translateY(-1px) scale(0.99);
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+/* زر Generate AI Suggestions الأخير يعاد استخدام نفس الزر الأبيض */
+.ai-results-card .ai-generate-wrapper {
+ margin-top: 14px;
+}
+
+/* ===== Loading Effect for Generate Button ONLY ===== */
+.ai-generate-btn.loading {
+ pointer-events: none;
+ opacity: 0.9;
+}
+.btn-spinner {
+ width: 18px;
+ height: 18px;
+ border-radius: 50%;
+ border: 2px solid rgba(0, 0, 0, 0.15);
+ border-top-color: #e85b1f;
+ animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+ to {
+   transform: rotate(360deg);
+ }
+}
+
+/* ===== Day Row Layout ===== */
+.ai-day-row {
+ display: flex;
+ justify-content: space-between;
+ align-items: flex-start;
+ gap: 30px;
+}
+.ai-day-text {
+ flex: 1;
+}
+.ai-day-image img {
+ width: 160px;
+ height: 180px;
+ object-fit: cover;
+ border-radius: 18px;
+ box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+ transition: transform 0.3s ease;
+}
+.ai-day-image img:hover {
+ transform: scale(1.05);
+}
+
+.smart-results-card {
+ max-width: 1080px;
+ margin: 24px auto 30px;
+ padding: 26px 30px 24px;
+ background: rgba(255, 255, 255, 0.78);
+ border-radius: 26px;
+ box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+ backdrop-filter: blur(6px);
+ -webkit-backdrop-filter: blur(6px);
+}
+.smart-results-title {
+ margin: 0 0 14px;
+ font-size: 1.1rem;
+ font-weight: 800;
+ color: #111;
+}
+.smart-divider {
+ width: 100%;
+ height: 1px;
+ background: rgba(0, 0, 0, 0.28);
+}
+.smart-day-row {
+ display: grid;
+ grid-template-columns: 1.1fr 0.95fr;
+ gap: 28px;
+ align-items: center;
+ padding: 18px 0;
+}
+.smart-day-text h3 {
+ margin: 0 0 18px;
+ font-size: 1.05rem;
+ font-weight: 800;
+ color: #111;
+}
+.smart-day-text p {
+ margin: 0 0 18px;
+ font-size: 0.98rem;
+ color: #111;
+}
+.smart-day-images {
+ display: flex;
+ justify-content: flex-end;
+ align-items: center;
+ gap: 16px;
+}
+.smart-day-images img {
+ width: 160px;
+ height: 160px;
+ object-fit: cover;
+ border-radius: 18px;
+ display: block;
+ box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+.smart-actions-row {
+ display: flex;
+ justify-content: center;
+ gap: 18px;
+ margin-top: 22px;
+}
+.smart-orange-btn {
+ min-width: 190px;
+ height: 54px;
+ border: none;
+ border-radius: 18px;
+ background: #eb731c;
+ color: #111;
+ font-size: 1rem;
+ font-weight: 800;
+ cursor: pointer;
+ box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ gap: 10px;
+}
+.smart-white-btn {
+ display: block;
+ margin: 18px auto 0;
+ min-width: 320px;
+ height: 56px;
+ border: none;
+ border-radius: 18px;
+ background: #fff;
+ color: #111;
+ font-size: 1rem;
+ font-weight: 700;
+ cursor: pointer;
+ box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+}
+@media (max-width: 900px) {
+ .smart-day-row {
+   grid-template-columns: 1fr;
+ }
+ .smart-day-images {
+   justify-content: flex-start;
+   flex-wrap: wrap;
+ }
+}
+
+.itinerary-day {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 30px;
+
+}
+
+.itinerary-text {
+
+  flex: 1;
+
+}
+
+.itinerary-images {
+
+  display: flex;
+
+  gap: 16px;
+
+  align-items: center;
+
+}
+
+.itinerary-images img {
+
+  width: 160px;
+
+  height: 160px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  display: block;
+
+}
+ 
